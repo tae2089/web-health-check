@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: web-check-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: scheduler
+          image: tae2089/web-check:3
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: web-check-secret
+          volumeMounts:
+            - name: web-check-scripts
+              mountPath: /scripts/check.yaml
+              subPath: check.yaml
+      volumes:
+        - name: web-check-scripts
+          configMap:
+            name: web-check-scripts
+            defaultMode: 0777
+      restartPolicy: OnFailure
+  backoffLimit: 4

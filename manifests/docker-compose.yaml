@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  platform:
+    image: tae2089/web-check:1
+    environment:
+      SLACK_WEB_HOOK_URL: ""
+    volumes:
+      - ./scripts:/scripts

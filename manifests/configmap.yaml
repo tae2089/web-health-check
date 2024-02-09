@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-check-scripts
+data:
+  check.yaml: |-
+    homepage:
+      - host: https://example.com
+        path:
+          - /
+          - /en
